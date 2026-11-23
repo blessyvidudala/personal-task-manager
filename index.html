@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deadlines</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Deadlines</h1>
+      <p id="summary" class="summary"></p>
+      <button type="button" id="alarm-btn">Turn on alarms</button>
+    </header>
+
+    <div id="alarms" aria-live="assertive"></div>
+
+    <form id="task-form" autocomplete="off">
+      <input type="hidden" id="task-id">
+      <label class="grow">Task
+        <input id="title" required maxlength="120" placeholder="Submit Lab 5 report">
+      </label>
+      <label>Due date
+        <input type="date" id="due" required>
+      </label>
+      <label>Time (optional)
+        <input type="time" id="time">
+      </label>
+      <label>Alarm
+        <select id="remind">
+          <option value="0" selected>At due time</option>
+          <option value="10">10 min before</option>
+          <option value="60">1 hour before</option>
+          <option value="1440">1 day before</option>
+          <option value="-1">No alarm</option>
+        </select>
+      </label>
+      <label>Priority
+        <select id="priority">
+          <option value="1">High</option>
+          <option value="2" selected>Medium</option>
+          <option value="3">Low</option>
+        </select>
+      </label>
+      <label>Category
+        <input id="category" maxlength="30" placeholder="Lab, Exam, Personal">
+      </label>
+      <div class="form-actions">
+        <button type="submit" id="save-btn" class="primary">Add task</button>
+        <button type="button" id="cancel-btn" hidden>Cancel</button>
+      </div>
+    </form>
+
+    <div class="toolbar">
+      <div class="filters" id="filters">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="today">Today</button>
+        <button data-filter="upcoming">Upcoming</button>
+        <button data-filter="overdue">Overdue</button>
+        <button data-filter="done">Done</button>
+      </div>
+      <input type="search" id="search" placeholder="Search tasks" aria-label="Search tasks">
+      <select id="sort" aria-label="Sort tasks">
+        <option value="due">Sort: due date</option>
+        <option value="priority">Sort: priority</option>
+        <option value="added">Sort: newest first</option>
+      </select>
+    </div>
+
+    <ul id="list"></ul>
+    <p id="empty" class="empty" hidden></p>
+
+    <footer>
+      <button id="export-btn">Export backup</button>
+      <button id="import-btn">Import backup</button>
+      <button id="clear-btn">Clear completed</button>
+      <input type="file" id="import-file" accept="application/json" hidden>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
